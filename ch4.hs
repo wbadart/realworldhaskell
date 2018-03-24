@@ -109,8 +109,9 @@ myCycle :: [a] -> [a]
 myCycle xs = foldr loop xs [1..]
   where loop _ acc = xs ++ acc
 
--- myWords :: String -> [String]
--- myWords "" = []
--- myWords s  = foldr mkwords [] (rstrip s)
---   where mkwords c all@(wd:wds) | c /= ' '  = (c : wd) : wds
---                                | otherwise = "" : all
+myWords :: String -> [String]
+myWords "" = []
+myWords s  = foldr mkwords [] s
+  where mkwords c [] = [[c]]
+        mkwords c all@(wd:wds) | c /= ' '  = (c : wd) : wds
+                               | otherwise = "" : all
